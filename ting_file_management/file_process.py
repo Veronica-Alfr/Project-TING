@@ -3,7 +3,7 @@ from ting_file_management.queue import Queue
 import sys
 
 
-def process(path_file: str, instance: Queue):
+def process(path_file: str, instance: Queue) -> list:
     lines = txt_importer(path_file)
 
     data = {
@@ -23,7 +23,7 @@ def process(path_file: str, instance: Queue):
     return print(data, file=sys.stdout)
 
 
-def remove(instance: Queue):
+def remove(instance: Queue) -> list:
     if not len(instance):
         return print("Não há elementos")
 
@@ -34,7 +34,7 @@ def remove(instance: Queue):
         )
 
 
-def file_metadata(instance: Queue, position: int):
+def file_metadata(instance: Queue, position: int) -> dict:
     try:
         print(instance.search(position), file=sys.stdout)
     except IndexError:
