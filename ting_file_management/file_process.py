@@ -3,9 +3,7 @@ from ting_file_management.queue import Queue
 import sys
 
 
-def process(path_file: str, instance: Queue) -> list:
-    if instance.contains_file(path_file):
-        return
+def process(path_file: str, instance: Queue):
     lines = txt_importer(path_file)
 
     data = {
@@ -14,15 +12,23 @@ def process(path_file: str, instance: Queue) -> list:
         "linhas_do_arquivo": lines,
     }
 
+    if len(instance) > 0:
+        for index in range(len(instance)):
+            if instance.search(index)["nome_do_arquivo"] == path_file:
+                return True
+            return False
+
     instance.enqueue(data)
 
+    return print(data, file=sys.stdout)
 
-def remove(instance: Queue) -> list:
+
+def remove(instance: Queue):
     if not len(instance):
         return print("Não há elementos")
 
     data = instance.dequeue()
-    print(f"Arquivo {data['nome_do_arquivo']} removido com sucesso")
+    print(f"Arquivo {data['nome_do_arquivo']} removido com sucesso", file=sys.stdout)
 
 
 def file_metadata(instance: Queue, position: int):
