@@ -1,5 +1,6 @@
 import sys
 
+
 def txt_importer(path_file):
     if path_file.endswith('.txt'):
         try:
@@ -9,4 +10,3 @@ def txt_importer(path_file):
             print(f'Arquivo {path_file} não encontrado', file=sys.stderr)
     else:
         print('Formato inválido', file=sys.stderr)
-
